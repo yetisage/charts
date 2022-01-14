@@ -42,7 +42,7 @@ spec:
       {{- end }}
     spec:
       {{- include "thanos.imagePullSecrets" . | nindent 6 }}
-      serviceAccount: {{ include "thanos.serviceAccount.name" (dict "component" "query-frontend" "context" $) }}
+      serviceAccount: {{ include "thanos.serviceAccount.name" (dict "component" "queryFrontend" "context" $) }}
       {{- if .Values.queryFrontend.hostAliases }}
       hostAliases: {{- include "common.tplvalues.render" (dict "value" .Values.queryFrontend.hostAliases "context" $) | nindent 8 }}
       {{- end }}
@@ -50,8 +50,8 @@ spec:
       affinity: {{- include "common.tplvalues.render" (dict "value" .Values.queryFrontend.affinity "context" $) | nindent 8 }}
       {{- else }}
       affinity:
-        podAffinity: {{- include "common.affinities.pods" (dict "type" .Values.queryFrontend.podAffinityPreset "component" "query-frontend" "context" $) | nindent 10 }}
-        podAntiAffinity: {{- include "common.affinities.pods" (dict "type" .Values.queryFrontend.podAntiAffinityPreset "component" "query-frontend" "context" $) | nindent 10 }}
+        podAffinity: {{- include "common.affinities.pods" (dict "type" .Values.queryFrontend.podAffinityPreset "component" "queryFrontend" "context" $) | nindent 10 }}
+        podAntiAffinity: {{- include "common.affinities.pods" (dict "type" .Values.queryFrontend.podAntiAffinityPreset "component" "queryFrontend" "context" $) | nindent 10 }}
         nodeAffinity: {{- include "common.affinities.nodes" (dict "type" .Values.queryFrontend.nodeAffinityPreset.type "key" .Values.queryFrontend.nodeAffinityPreset.key "values" .Values.queryFrontend.nodeAffinityPreset.values) | nindent 10 }}
       {{- end }}
       {{- if .Values.queryFrontend.nodeSelector }}
